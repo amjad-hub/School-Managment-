@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Art School | Schedule</title>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/grid_12.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/slider.css">
+<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700' rel='stylesheet' type='text/css'>
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/tms-0.4.1.js"></script>
+
+<script src="./vue/vue.global.js"></script>
+<script src="./vue/vuex.global.js"></script>
+
+
+<script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
+<script src="./store/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./Students.js"></script>
+<meta name="author" content="Codeconvey" />
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+
+    <!--Only for demo purpose - no need to add.-->
+    
+    <link rel="stylesheet" href="css/student_style.css">
+
+
+
+
+<script>
+$(document)
+    .ready(function () {
+    $('.slider')
+        ._TMS({
+        show: 0,
+        pauseOnHover: true,
+        prevBu: '.prev',
+        nextBu: '.next',
+        playBu: false,
+        duration: 800,
+        preset: 'fade',
+        pagination: true,
+        pagNums: false,
+        slideshow: 7000,
+        numStatus: false,
+        banners: false,
+        waitBannerAnimation: false,
+        progressBar: false
+    })
+});
+</script>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+<div class="main">
+  <!--==============================header=================================-->
+  <header>
+    <h1><a href="Home.html"><img src="images/logo.png" alt=""></a></h1>
+    <nav>
+      <div id="slide">
+        <div class="slider">
+          <ul class="items">
+            <li><img src="images/slider-1.jpg" alt=""></li>
+            <li><img src="images/slider-2.jpg" alt=""></li>
+            <li><img src="images/slider-3.jpg" alt=""></li>
+          </ul>
+        </div>
+        <a href="#" class="prev"></a><a href="#" class="next"></a> </div>
+      <ul class="menu">
+        <li><a href="Home.html" class="clr-1">Home</a></li>
+        <li><a href="Teachers.html" class="clr-4">Teachers</a></li>
+        <li><a href="Students.html" class="clr-5">Students</a></li>
+        <li><a href="AddStudent.html" class="clr-2">AddStudent</a></li>
+
+      </ul>
+    </nav>
+  </header>
+  <!--==============================content================================-->
+  <div class="home" id="app">
+    <div>
+      <h2 v-if="students.length == 0" class="container text-center" >
+          No fresh students right now.
+      </h2>
+
+      <ul v-else>
+      <li v-for="student in students">
+          
+              <section>
+                  <div class="main">
+                      <div class="col-rt-12">
+                          <div class="Scriptcontent">
+                                          
+                              <div class="student-profile py-4">
+                              <div class="container">
+                                  <div class="row">
+                                  <div class="col-lg-4">
+                                      <div class="card shadow-sm">
+                                      <div class="card-header bg-transparent text-center">
+                                          <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
+                                          <h3></h3>
+                                          <a href="#"  @click="sentID" >{{student.FirstName}} {{student.LastName}}</a>
+
+                                      </div>
+                                      <div class="card-body">
+                                          <p class="mb-0"><strong class="pr-1">FirstName:</strong>{{student.FirstName}}</p>
+                                          <p class="mb-0"><strong class="pr-1">LastName:</strong>{{student.LastName}}</p>
+                                      </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-8">
+                                      <div class="card shadow-sm">
+                                      <div class="card-header bg-transparent border-0">
+                                          <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+                                      </div>
+                                      <div class="card-body pt-0">
+                                          <table class="table table-bordered">
+                                          <tr>
+                                              <th width="30%">Address</th>
+                                              <td width="2%">:</td>
+                                              <td>{{student.Address}} </td>
+                                          </tr>
+                                          <tr>
+                                              <th width="30%">PHNumber</th>
+                                              <td width="2%">:</td>
+                                              <td>{{student.PHNumber}}  </td>
+                                          </tr>
+
+ 
+                                          </table>
+                                      </div>
+                                      </div>
+                                      <div style="height: 26px"></div>
+
+                                  </div>
+                                  </div>
+                              </div>
+                              </div>
+                                      
+                          </div>
+                      </div>
+                      </div>
+              </section>
+      </li>
+      </ul> 
+    </div>
+  
+  </div>
+ 
+
+
+</div>
+
+<script>  
+  var app = Vue.createApp(Students).mount('#app')
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+</body>
+</html>

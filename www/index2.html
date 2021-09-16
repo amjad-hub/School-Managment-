@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>VUE demo</title>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            
+            <h1>{{message}}</h1>
+
+            <div>Список тренеров</div>
+            <ul>
+                <li v-for="coach in coaches">{{coach.Name}} {{coach.Email}}</li>
+            </ul>
+
+        </div>
+        <script>
+            const HelloApp = {
+                data() {
+                    return {
+                        message: 'Hello Vue!',
+                        coaches: []
+                    }
+                },
+                created() {
+                    this.getCoaches()
+                },
+                methods:{
+                    getCoaches() {
+                        axios.get('http://localhost:9098/bmstuapi/coach')
+                        .then(response=>{
+                            this.coaches = response.data.coaches
+                        })
+                        .catch(error=>{
+                            this.message ='Ошибка!!!'+error
+                        })
+                    }
+                }
+            }
+            var app = Vue.createApp(HelloApp).mount('#app')
+        </script>
+    </body>
+</html>

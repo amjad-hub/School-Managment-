@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Add Student</title>
+    <script src="./vue/vue.global.js"></script>
+    <script src="./vue/vuex.global.js"></script>
+
+
+    <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
+    <script src="./store/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./DoTest.js"></script>
+
+</head>
+<body>
+
+	<div class="all-title-box">
+
+		<div class="container text-center">
+			<h1>Students<span class="m_1">Welcome to your School</span></h1>
+
+		</div>
+	</div>
+
+<div class="home" id="app">
+
+    <form class="review-form" @submit.prevent="onSubmit">
+        <h3>Add Informations of Test</h3>
+        <label for="testName">testName:</label>
+        <input id="testName" v-model="testName">
+    
+        <label for="testDetail">testDetail:</label>      
+        <textarea id="testDetail" v-model="testDetail"></textarea>
+    
+
+
+    
+        <input class="button" type="submit" value="Submit">  
+      </form>
+</div>
+
+<script>  
+  var app = Vue.createApp(DoTest).mount('#app')
+</script>
+
+	</body>
+</html>

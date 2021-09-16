@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>VUE demo</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{message}}</h1>
+            <input v-model="name">
+            <button v-on:click="updateMessage">Update</button>
+            <ul>
+                <li v-for="book in books">{{book.title}}</li>
+            </ul>
+            <div>Кол-во книг: {{countBooks}}</div>
+        </div>
+        <script>
+            const HelloApp = {
+                data() {
+                    return {
+                        message: 'Hello Vue!',
+                        name: '',
+                        books: [
+                            {title:'Book 1'},
+                            {title:'Book 2'},
+                            {title:'Book 3'}
+                        ]
+                    }
+                },
+                created() {
+                    console.log(this.message);
+                    this.name = 'qwerty';
+                },
+                methods: {
+                    updateMessage() {
+                        this.message = 'Hello '+this.name+'!';
+                        this.books.push({title:this.name});
+                    }
+                },
+                computed: {
+                    countBooks() {
+                        return this.books.length;
+                    }
+                }
+            }
+            var app = Vue.createApp(HelloApp).mount('#app')
+        </script>
+    </body>
+</html>
